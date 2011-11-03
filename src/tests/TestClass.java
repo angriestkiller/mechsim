@@ -1,8 +1,8 @@
 package tests;
 
-import org.junit.Test;
-
 import UI.mainUIFrame;
+import simulator.*;;
+
 
 
 public class TestClass {
@@ -10,12 +10,17 @@ public class TestClass {
 	/**
 	 * @param args
 	 */
-	@Test public static void main(String[] args) {
+	public static void main(String[] args) {
 	
-		mainUIFrame frame1 = new mainUIFrame();
-		frame1.setFrameVisible();
+		//mainUIFrame frame = new mainUIFrame();
+		//frame.setFrameVisible();
+		mechanicalModel model = new mechanicalModel(20,20,1);
+		for (int i =0;i<22;i++){
+			for(int j=0;j<22;j++){
+				System.out.print(model.getCoordX(i,j)+"  ");
+			}
+			System.out.println();
+		}
+	  
 	}
-
-	@Test public static void m1() { }
-		
 }

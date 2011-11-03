@@ -13,5 +13,6 @@ public class massModelParent {
 
 		
 	}
-
+	 double getySpeed(){return ySpeed;}
+	 double getxSpeed(){return xSpeed;}
 }

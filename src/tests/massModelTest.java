@@ -5,7 +5,7 @@ import simulator.massModel;
 
 public class massModelTest {
 	public static void main(String[] args) {
-		massModel dot = new massModel(2,2,1);
+		massModel dot = new massModel(2,2,1,true);
 		
 
 		dot.updateMassParam(1,1);

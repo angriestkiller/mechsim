@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+//import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 
 
@@ -39,11 +39,11 @@ public class mainUIFrame extends JFrame {
     setTitle("MechSim");
 
     // set L&F to the nice Windows style
-    try {
-        UIManager.setLookAndFeel(new WindowsLookAndFeel());
-    } catch (UnsupportedLookAndFeelException e1) {
+   // try {
+      //  UIManager.setLookAndFeel(new WindowsLookAndFeel());
+   // } catch (UnsupportedLookAndFeelException e1) {
       
-    }
+  //  }
 
     drawWidgets();
 
@@ -76,5 +76,4 @@ public class mainUIFrame extends JFrame {
   }
 
 }
-
 
