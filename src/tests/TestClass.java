@@ -13,5 +13,4 @@ public class TestClass {
 		mainUIFrame frame = new mainUIFrame();
 		frame.setFrameVisible();
 	}
-
 }
