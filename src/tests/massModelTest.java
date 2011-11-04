@@ -8,7 +8,7 @@ public class massModelTest {
 		massModel dot = new massModel(2,2,1,true);
 		
 
-		dot.updateMassParam(1,1);
+		
 		System.out.println(dot.getxCoord());	
 		System.out.println(dot.getyCoord());	
 	}

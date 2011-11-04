@@ -1,5 +1,5 @@
 package simulator;
-
+	
 public class massModel extends massModelParent{
 	
 double xCoord;
@@ -14,20 +14,24 @@ public massModel(double xCoord,double yCoord,int timePeriod,boolean changable){
 	this.dt=timePeriod;
 }
 
-public void updateMassParam(double systemAccelerationX,double systemAccelerationY){
-	
-	xAccel=xAccel+systemAccelerationX;
-	yAccel=yAccel+systemAccelerationY;
-	xSpeed=xAccel*dt+xSpeed;
-	ySpeed=yAccel*dt+ySpeed;
-	xCoord=xSpeed*dt+xSpeed;
-	yCoord=ySpeed*dt+ySpeed;	
+public void setNewAcceleration(double systemAccelerationX,double systemAccelerationY){
+	xAccel=systemAccelerationX;
+	yAccel=systemAccelerationY;
 }
+public void updatePointCoordinates(){	
+	if(changable){
+		xSpeed=xAccel*dt+xSpeed;
+		ySpeed=yAccel*dt+ySpeed;
+		xCoord=xSpeed*dt+xSpeed;
+		yCoord=ySpeed*dt+ySpeed;	
+	}
+}
+
 public double getxCoord(){return xCoord;}
 public double getyCoord(){return yCoord;}
 
 
-boolean getStatus(){return changable;}
+public boolean getStatus(){return changable;}
 
 public void setNewCoordinatesByClicking(long x, long y){
 	xCoord=x;

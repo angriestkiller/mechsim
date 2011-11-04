@@ -17,7 +17,7 @@ public class mechanicalModel {
 	
 	public mechanicalModel(int columns , int series, int dt){
 		this.dt=dt;
-		
+		//create starting mass point grid
 		List<massModel> seriesarray ;
 		
 		pointArray = new ArrayList<List<massModel>>();
@@ -56,9 +56,10 @@ public class mechanicalModel {
 	
 	public double getCoordX(int i , int j){ return pointArray.get(i).get(j).getxCoord();}
 	public double getCoordY(int i , int j){ return pointArray.get(i).get(j).getyCoord();}
+	public massModel getMassModel(int i , int j){ return pointArray.get(i).get(j);}
 	
 	//the most important two methods for the simulator
-	//calculates 
+	//calculates force superpositions for one specific mass point (one for x , second for y)
 	public double getxAcceleration(int i , int j){
 		return  pointArray.get(i).get(j-1).getxCoord()-pointArray.get(i).get(j).getxCoord()*getForceModule(i,j,i,j-1)/getLenght(i,j,i,j-1)+
 				pointArray.get(i+1).get(j).getxCoord()-pointArray.get(i).get(j).getxCoord()*getForceModule(i,j,i+1,j)/getLenght(i,j,i+1,j)+
@@ -82,7 +83,7 @@ public class mechanicalModel {
 		
 	}
 	
-	 public double getLenght(int i , int j,int i1 , int j1){//returns distance between 2 points
+	 double getLenght(int i , int j,int i1 , int j1){//returns distance between 2 points
 		return Math.sqrt(Math.pow(pointArray.get(i).get(j).getxCoord()-pointArray.get(i1).get(j1).getxCoord(),2)+
 				Math.pow(pointArray.get(i).get(j).getyCoord()-pointArray.get(i1).get(j1).getyCoord(),2));
 		
