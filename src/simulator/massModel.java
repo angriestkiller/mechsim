@@ -5,9 +5,9 @@ public class massModel extends massModelParent{
 double xCoord;
 double yCoord;
 boolean changable;
-int dt;//time period at which we update system params,determines calculation accuracy
+double dt;//time period at which we update system params,determines calculation accuracy
 
-public massModel(double xCoord,double yCoord,int timePeriod,boolean changable){
+public massModel(double xCoord,double yCoord,double timePeriod,boolean changable){
 	this.changable=changable;
 	this.xCoord=xCoord;
 	this.yCoord=yCoord;
@@ -34,8 +34,13 @@ public double getyCoord(){return yCoord;}
 public boolean getStatus(){return changable;}
 
 public void setNewCoordinatesByClicking(long x, long y){
-	xCoord=x;
-	yCoord=y;
+	if(changable){
+		xCoord=x;
+		yCoord=y;
+	}
+	else{
+		System.out.println("cannot do so");
+	}
 }
 //TODO
 //void setSpeedByClicking()

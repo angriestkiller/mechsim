@@ -7,15 +7,16 @@ import java.util.ArrayList;
 public class mechanicalModel {
 	//this is a main simulator class
 	// stores info about mass position , speed and acceleration
-	int dt;
+	double dt;
 	int k=1;//Guck's koef
 	int l=10;// tasakaalus vedru pikkus
 	// i and j are indexes of mass dots
 	
 	massModel MassDot;
 	List<List<massModel>> pointArray ;
-	
-	public mechanicalModel(int columns , int series, int dt){
+
+	public mechanicalModel(int columns , int series, double dt){
+		//columns should show moving participles columns
 		this.dt=dt;
 		//create starting mass point grid
 		List<massModel> seriesarray ;
@@ -61,10 +62,10 @@ public class mechanicalModel {
 	//the most important two methods for the simulator
 	//calculates force superpositions for one specific mass point (one for x , second for y)
 	public double getxAcceleration(int i , int j){
-		return  pointArray.get(i).get(j-1).getxCoord()-pointArray.get(i).get(j).getxCoord()*getForceModule(i,j,i,j-1)/getLenght(i,j,i,j-1)+
-				pointArray.get(i+1).get(j).getxCoord()-pointArray.get(i).get(j).getxCoord()*getForceModule(i,j,i+1,j)/getLenght(i,j,i+1,j)+
-				pointArray.get(i-1).get(j).getxCoord()-pointArray.get(i).get(j).getxCoord()*getForceModule(i,j,i-1,j)/getLenght(i,j,i-1,j)+
-				pointArray.get(i).get(j+1).getxCoord()-pointArray.get(i).get(j).getxCoord()*getForceModule(i,j,i,j+1)/getLenght(i,j,i,j+1);
+		return ( pointArray.get(i).get(j-1).getxCoord()-pointArray.get(i).get(j).getxCoord())*getForceModule(i,j,i,j-1)/getLenght(i,j,i,j-1)+
+				(pointArray.get(i+1).get(j).getxCoord()-pointArray.get(i).get(j).getxCoord())*getForceModule(i,j,i+1,j)/getLenght(i,j,i+1,j)+
+				(pointArray.get(i-1).get(j).getxCoord()-pointArray.get(i).get(j).getxCoord())*getForceModule(i,j,i-1,j)/getLenght(i,j,i-1,j)+
+				(pointArray.get(i).get(j+1).getxCoord()-pointArray.get(i).get(j).getxCoord())*getForceModule(i,j,i,j+1)/getLenght(i,j,i,j+1);
 				//-dissipation
 		
 	}
@@ -74,11 +75,14 @@ public class mechanicalModel {
 	//public double getyAcceleration(int i , int j){
 		//ay=k*((verh-seredina)*sila/dlina+(pravo-seredina)*sila/dlina+(levo-seredina)*sila/dlina+(niz-seredina)...
 //	}
+	
+
+	
 	public double getyAcceleration(int i , int j){
-		return  pointArray.get(i).get(j-1).getyCoord()-pointArray.get(i).get(j).getyCoord()*getForceModule(i,j,i,j-1)/getLenght(i,j,i,j-1)+
-				pointArray.get(i+1).get(j).getyCoord()-pointArray.get(i).get(j).getyCoord()*getForceModule(i,j,i+1,j)/getLenght(i,j,i+1,j)+
-				pointArray.get(i-1).get(j).getyCoord()-pointArray.get(i).get(j).getyCoord()*getForceModule(i,j,i-1,j)/getLenght(i,j,i-1,j)+
-				pointArray.get(i).get(j+1).getyCoord()-pointArray.get(i).get(j).getyCoord()*getForceModule(i,j,i,j+1)/getLenght(i,j,i,j+1);
+		return  (pointArray.get(i).get(j-1).getyCoord()-pointArray.get(i).get(j).getyCoord())*getForceModule(i,j,i,j-1)/getLenght(i,j,i,j-1)+
+				(pointArray.get(i+1).get(j).getyCoord()-pointArray.get(i).get(j).getyCoord())*getForceModule(i,j,i+1,j)/getLenght(i,j,i+1,j)+
+				(pointArray.get(i-1).get(j).getyCoord()-pointArray.get(i).get(j).getyCoord())*getForceModule(i,j,i-1,j)/getLenght(i,j,i-1,j)+
+				(pointArray.get(i).get(j+1).getyCoord()-pointArray.get(i).get(j).getyCoord())*getForceModule(i,j,i,j+1)/getLenght(i,j,i,j+1);
 				//-dissipation
 		
 	}
