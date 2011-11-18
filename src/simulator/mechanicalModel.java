@@ -7,9 +7,11 @@ import java.util.ArrayList;
 public class mechanicalModel {
 	//this is a main simulator class
 	// stores info about mass position , speed and acceleration
+	int series;
+	int columns;
 	double dt;
 	int k=1;//Guck's koef
-	int l=10;// tasakaalus vedru pikkus
+	int l=100;// tasakaalus vedru pikkus
 	// i and j are indexes of mass dots
 	
 	massModel MassDot;
@@ -18,6 +20,8 @@ public class mechanicalModel {
 	public mechanicalModel(int columns , int series, double dt){
 		//columns should show moving participles columns
 		this.dt=dt;
+		this.series=series;
+		this.columns = columns;
 		//create starting mass point grid
 		List<massModel> seriesarray ;
 		
@@ -29,7 +33,7 @@ public class mechanicalModel {
 			
 			seriesarray.add(new massModel(l+j*l ,0,dt,false));			
 		}
-		seriesarray.add(new massModel( series *l +l,0 ,dt,false));
+		seriesarray.add(new massModel( series *l ,0 ,dt,false));
 		pointArray.add(seriesarray);
 		
 		for(int i =0; i < series ; i++){
@@ -44,12 +48,12 @@ public class mechanicalModel {
 		}		
 		//add last portion
 		seriesarray = new ArrayList<massModel>();
-		seriesarray.add(new massModel(0 , l+columns*l,dt,false));
+		seriesarray.add(new massModel(0 , columns*l,dt,false));
 		for( int j =0 ; j< columns ; j++){
 			
-			seriesarray.add(new massModel(l+j*l ,l+columns*l,dt,false));			
+			seriesarray.add(new massModel(l+j*l ,columns*l,dt,false));			
 		}
-		seriesarray.add(new massModel(series *l +l,columns*l+l ,dt,false));
+		seriesarray.add(new massModel(series *l +l,columns*l ,dt,false));
 		pointArray.add(seriesarray);
 	}
 	
@@ -61,6 +65,7 @@ public class mechanicalModel {
 	
 	//the most important two methods for the simulator
 	//calculates force superpositions for one specific mass point (one for x , second for y)
+
 	public double getxAcceleration(int i , int j){
 		return ( pointArray.get(i).get(j-1).getxCoord()-pointArray.get(i).get(j).getxCoord())*getForceModule(i,j,i,j-1)/getLenght(i,j,i,j-1)+
 				(pointArray.get(i+1).get(j).getxCoord()-pointArray.get(i).get(j).getxCoord())*getForceModule(i,j,i+1,j)/getLenght(i,j,i+1,j)+
@@ -96,4 +101,36 @@ public class mechanicalModel {
 		return (getLenght(i,j,i1,j1)-l)*k;
 		
 	}
+	public int getSeries(){return series;}
+	
+
+
+
+	public int getColumns() {
+		return columns;
+	}
+	public selectedPointInfo getselectedPoint(int x , int y){
+		massModel selectedPoint=null;
+		boolean selected=false;
+		for (int i =1;i<getColumns();i++){
+    		for(int j=1;j<getSeries();j++){
+    			if(x<(getMassModel(i, j).getxCoord()+20 ) &&
+    					x>(getMassModel(i, j).getxCoord()-20)&&
+    					y<(getMassModel(i, j).getyCoord()+20)&&
+    					y>(getMassModel(i, j).getyCoord()-20)&&
+    					selected==false){
+    						selectedPoint =getMassModel(i, j);
+    						selected=true;
+    						
+    			}
+    		}
+		
+	}
+		
+		
+		return new selectedPointInfo(selectedPoint,selected);
+		
+	
+	}
 }
+

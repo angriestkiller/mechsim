@@ -5,6 +5,7 @@ public class massModel extends massModelParent{
 double xCoord;
 double yCoord;
 boolean changable;
+boolean dragged=false;
 double dt;//time period at which we update system params,determines calculation accuracy
 
 public massModel(double xCoord,double yCoord,double timePeriod,boolean changable){
@@ -19,11 +20,11 @@ public void setNewAcceleration(double systemAccelerationX,double systemAccelerat
 	yAccel=systemAccelerationY;
 }
 public void updatePointCoordinates(){	
-	if(changable){
+	if(changable && !dragged){
 		xSpeed=xAccel*dt+xSpeed;
 		ySpeed=yAccel*dt+ySpeed;
-		xCoord=xSpeed*dt+xSpeed;
-		yCoord=ySpeed*dt+ySpeed;	
+		xCoord=xSpeed*dt+xCoord;
+		yCoord=ySpeed*dt+yCoord;	
 	}
 }
 
@@ -42,6 +43,8 @@ public void setNewCoordinatesByClicking(long x, long y){
 		System.out.println("cannot do so");
 	}
 }
+public void setToDragged(){dragged=true;}
+public void setToUndragged(){dragged=false;}
 //TODO
 //void setSpeedByClicking()
 
