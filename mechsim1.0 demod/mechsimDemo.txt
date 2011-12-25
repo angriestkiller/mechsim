@@ -1,0 +1,22 @@
+accuracy
+0.05
+starting distance
+100
+balanced lenght
+100
+masses
+n n n n n n n n n
+n 1 20 1 1 1 1 1 n
+n 100 2 2 2 2 2 2 n
+n 1 2 2 2 2 1 100 n
+n n n n n n n n n
+vertical springs
+100 25 276 276 24 232 200
+14 12 290 277 288 298 299
+1 25 26 28 77 22 37
+1 24 29 90 88 55 45
+horisontal springs
+11 2 2 2 2 2 2 1
+1 92 2 2 2 2 2 1
+1 2 2 2 2 2 2 1
+end

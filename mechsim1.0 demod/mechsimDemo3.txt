@@ -1,0 +1,16 @@
+accuracy
+0.001
+starting distance
+100
+balanced lenght
+100
+masses
+n n n
+n 1 n
+n n n
+vertical springs
+1
+1
+horisontal springs
+1 1
+end
